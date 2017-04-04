@@ -17,7 +17,7 @@ namespace engine {
 
 		void add(Entity* entity);
 
-		virtual void onUpdate();
+		virtual void onUpdate(float deltaTime);
 		virtual void onRender();
 
 		inline graphics::Camera* getCamera() { return m_Camera; }

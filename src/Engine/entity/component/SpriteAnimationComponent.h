@@ -8,8 +8,8 @@ namespace engine { namespace entity { namespace component {
 
 	class SpriteAnimationComponent : public Component {
 	public:
-		SpriteAnimationComponent(const std::vector<graphics::SpriteAnimation>& animations);
-		SpriteAnimationComponent(const std::initializer_list<graphics::SpriteAnimation>& animations);
+		SpriteAnimationComponent(const std::vector<graphics::SpriteAnimation>& anims);
+		SpriteAnimationComponent(const std::initializer_list<graphics::SpriteAnimation>& anims);
 		virtual ~SpriteAnimationComponent();
 
 		static ComponentType* getStaticType()

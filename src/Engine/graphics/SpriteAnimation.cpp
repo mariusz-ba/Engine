@@ -13,6 +13,7 @@ namespace engine { namespace graphics {
 
 	}
 
+	// TODO: ...
 	SpriteAnimation::SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames)
 	{
 
@@ -20,28 +21,30 @@ namespace engine { namespace graphics {
 
 	void SpriteAnimation::play()
 	{
-		if (!m_Running)
-		{
+		//if (!m_Running)
+		//{
 			m_CurrentFrame = m_OriginFrame;
-			m_LastUpdate = steady_clock::now();
+			//m_LastUpdate = steady_clock::now();
+			m_Time = 0.0f;
 			m_Running = true;
-		}
+		//}
 	}
 
-	void SpriteAnimation::update()
+	void SpriteAnimation::update(float deltaTime)
 	{
 		if (m_Running)
 		{
-			steady_clock::time_point current = steady_clock::now();
-			float duration = duration_cast<milliseconds>(current - m_LastUpdate).count() / 1000.f;
-			while (duration >= m_Interval)
+			m_Time += deltaTime;
+			//steady_clock::time_point current = steady_clock::now();
+			//float duration = duration_cast<milliseconds>(current - m_LastUpdate).count() / 1000.f;
+			while (m_Time >= m_Interval)
 			{
 				m_Sprite->setTextureRect(m_Frames[m_CurrentFrame].x, m_Frames[m_CurrentFrame].y, m_Frames[m_CurrentFrame].width, m_Frames[m_CurrentFrame].height);
 				if (++m_CurrentFrame >= m_Frames.size())
 					m_CurrentFrame = m_OriginFrame;
 
-				duration -= m_Interval;
-				m_LastUpdate = current;
+				m_Time -= m_Interval;
+				//m_LastUpdate = current;
 			}
 		}
 	}

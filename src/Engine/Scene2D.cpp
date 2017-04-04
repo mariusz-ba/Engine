@@ -21,9 +21,15 @@ namespace engine {
 		m_Entities.push_back(entity);
 	}
 
-	void Scene2D::onUpdate()
+	void Scene2D::onUpdate(float deltaTime)
 	{
-
+		// TODO: Do it only for entities that have animations
+		for (Entity* entity : m_Entities)
+		{
+			component::SpriteAnimationComponent* animationComponent = entity->getComponent<component::SpriteAnimationComponent>();
+			if (animationComponent)
+				animationComponent->animations[animationComponent->currentAnimation].update(deltaTime);
+		}
 	}
 
 	void Scene2D::onRender()

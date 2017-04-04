@@ -25,13 +25,13 @@ namespace engine { namespace graphics {
 	public:
 		SpriteAnimation();
 		SpriteAnimation(const std::string& name, const std::vector<Rect<int>>& frames);
-		SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames);
+		SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames); // not implementation
 
 		inline void setSprite(Sprite* sprite) { m_Sprite = sprite; }
 		inline const Sprite* getSprite() const { return m_Sprite; }
 
 		void play();
-		void update();
+		void update(float deltaTime);
 		void pause();
 		void stop();
 		void reset();
@@ -57,7 +57,8 @@ namespace engine { namespace graphics {
 		float m_Interval = 1.0f;
 		Sprite* m_Sprite = nullptr;
 		bool m_Running = false;
-		steady_clock::time_point m_LastUpdate;
+		//steady_clock::time_point m_LastUpdate;
+		float m_Time;
 	};
 
 } }

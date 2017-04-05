@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include "../../graphics/SpriteAnimation.h"
+#include "../../graphics/SpriteAnimationMixer.h"
 #include <map>
 
 namespace engine { namespace entity { namespace component {
@@ -10,6 +10,7 @@ namespace engine { namespace entity { namespace component {
 	public:
 		SpriteAnimationComponent(const std::vector<graphics::SpriteAnimation>& anims);
 		SpriteAnimationComponent(const std::initializer_list<graphics::SpriteAnimation>& anims);
+		SpriteAnimationComponent(graphics::SpriteAnimationMixer* mixer);
 		virtual ~SpriteAnimationComponent();
 
 		static ComponentType* getStaticType()
@@ -21,21 +22,8 @@ namespace engine { namespace entity { namespace component {
 		inline virtual ComponentType* getType() const override { return getStaticType(); }
 
 	public:
-		std::map<std::string, graphics::SpriteAnimation> animations;
-		std::string currentAnimation;
+		// TODO: Use pointer ?
+		graphics::SpriteAnimationMixer* mixer;
 	};
 
 } } }
-// TODO: remove steady_clock::time_point from SpriteAnimation and replace it with update(time) function which takes delta time as input parameter
-/*
-
-Entity* entity;
-
-std::string current_animation = entity->getComponent(component::SpriteAnimationComponent>()->currentAnimation;
-
-Scene -> OnUpdate()
-entity->getComponent(component::SpriteAnimationComponent>()->animations[currentAnimation].update(deltatime);
-
-
-
-*/

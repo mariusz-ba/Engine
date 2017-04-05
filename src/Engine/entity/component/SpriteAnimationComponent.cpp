@@ -2,20 +2,19 @@
 
 namespace engine { namespace entity { namespace component {
 
-	SpriteAnimationComponent::SpriteAnimationComponent(const std::vector<graphics::SpriteAnimation>& anims)
+	SpriteAnimationComponent::SpriteAnimationComponent(const std::vector<graphics::SpriteAnimation>& animations)
+		: mixer(new graphics::SpriteAnimationMixer(animations))
 	{
-		for (auto it = anims.begin(); it != anims.end(); ++it)
-		{
-			animations[it->getName()] = *it;
-		}
 	}
 
-	SpriteAnimationComponent::SpriteAnimationComponent(const std::initializer_list<graphics::SpriteAnimation>& anims)
+	SpriteAnimationComponent::SpriteAnimationComponent(const std::initializer_list<graphics::SpriteAnimation>& animations)
+		: mixer(new graphics::SpriteAnimationMixer(animations))
 	{
-		for (auto it = anims.begin(); it != anims.end(); ++it)
-		{
-			animations[it->getName()] = *it;
-		}
+	}
+
+	SpriteAnimationComponent::SpriteAnimationComponent(graphics::SpriteAnimationMixer* mixer)
+		: mixer(mixer)
+	{
 	}
 
 	SpriteAnimationComponent::~SpriteAnimationComponent()

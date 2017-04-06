@@ -27,6 +27,10 @@ namespace engine { namespace graphics {
 
 	void SpriteAnimationMixer::play(const std::string& animationName)
 	{
+		// Check if given animation is running
+		if (m_MixerState == MixerState::Playing && m_CurrentAnimation == animationName)
+			return;
+
 		// Stop all animations
 		reset();
 

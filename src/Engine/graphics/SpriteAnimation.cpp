@@ -16,7 +16,11 @@ namespace engine { namespace graphics {
 	// TODO: ...
 	SpriteAnimation::SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames)
 	{
-
+		if (frames.size() % 4 != 0) return; // Each frame contains 4 elements (x, y, width, height)
+		for (auto it = frames.begin(); it != frames.end(); it += 4)
+		{
+			m_Frames.emplace_back(*it, *std::next(it), *std::next(it, 2), *std::next(it, 3));
+		}
 	}
 
 	void SpriteAnimation::play()
@@ -24,7 +28,6 @@ namespace engine { namespace graphics {
 		//if (!m_Running)
 		//{
 			m_CurrentFrame = m_OriginFrame;
-			//m_LastUpdate = steady_clock::now();
 			m_Time = 0.0f;
 			m_Running = true;
 		//}
@@ -35,8 +38,6 @@ namespace engine { namespace graphics {
 		if (m_Running)
 		{
 			m_Time += deltaTime;
-			//steady_clock::time_point current = steady_clock::now();
-			//float duration = duration_cast<milliseconds>(current - m_LastUpdate).count() / 1000.f;
 			while (m_Time >= m_Interval)
 			{
 				m_Sprite->setTextureRect(m_Frames[m_CurrentFrame].x, m_Frames[m_CurrentFrame].y, m_Frames[m_CurrentFrame].width, m_Frames[m_CurrentFrame].height);
@@ -44,7 +45,6 @@ namespace engine { namespace graphics {
 					m_CurrentFrame = m_OriginFrame;
 
 				m_Time -= m_Interval;
-				//m_LastUpdate = current;
 			}
 		}
 	}

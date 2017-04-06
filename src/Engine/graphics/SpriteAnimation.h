@@ -25,7 +25,7 @@ namespace engine { namespace graphics {
 	public:
 		SpriteAnimation();
 		SpriteAnimation(const std::string& name, const std::vector<Rect<int>>& frames);
-		SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames); // not implementation
+		SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames); // no implementation
 
 		inline void setSprite(Sprite* sprite) { m_Sprite = sprite; }
 		inline const Sprite* getSprite() const { return m_Sprite; }

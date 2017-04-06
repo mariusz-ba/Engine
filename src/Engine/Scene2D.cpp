@@ -29,7 +29,6 @@ namespace engine {
 			component::SpriteAnimationComponent* animationComponent = entity->getComponent<component::SpriteAnimationComponent>();
 			if (animationComponent)
 				animationComponent->mixer->update(deltaTime);
-				//animationComponent->animations[animationComponent->currentAnimation].update(deltaTime);
 		}
 	}
 

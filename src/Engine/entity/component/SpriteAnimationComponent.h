@@ -22,7 +22,6 @@ namespace engine { namespace entity { namespace component {
 		inline virtual ComponentType* getType() const override { return getStaticType(); }
 
 	public:
-		// TODO: Use pointer ?
 		graphics::SpriteAnimationMixer* mixer;
 	};
 

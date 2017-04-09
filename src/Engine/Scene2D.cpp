@@ -1,5 +1,6 @@
 #include "Scene2D.h"
 #include "graphics/BatchRenderer.h"
+#include <numeric>
 
 namespace engine {
 
@@ -8,6 +9,14 @@ namespace engine {
 		m_Camera(new graphics::Camera(projectionMatrix))
 	{
 		m_Renderer->setCamera(m_Camera);
+		m_Renderer->setShader(new graphics::Shader("shaders/vertex_shader.vert", "shaders/fragment_shader.frag"));
+		//m_Renderer->getShader()->enable();
+
+		GLint textIDs[32];
+		std::iota(textIDs, textIDs + 32, 0);
+		m_Renderer->getShader()->setUnifrom1iv("sampler", textIDs, 32);
+
+		//m_Renderer->getShader()->disable();
 	}
 
 	Scene2D::~Scene2D()
@@ -36,6 +45,11 @@ namespace engine {
 	{
 		// TODO: render only visible entities, split into chunks
 		m_Renderer->begin();
+
+		// TODO: move it somewhere xd
+		m_Renderer->getShader()->setUniformMat4("pr_matrix", m_Camera->getProjectionMatrix());
+		m_Renderer->getShader()->setUniformMat4("vw_matrix", m_Camera->getViewMatrix());
+
 		for (Entity* entity : m_Entities)
 		{
 			component::SpriteComponent* spriteComponent = entity->getComponent<component::SpriteComponent>();

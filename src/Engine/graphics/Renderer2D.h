@@ -25,7 +25,7 @@ namespace engine { namespace graphics {
 
 		inline void setCamera(Camera* camera) { m_Camera = camera; }
 		inline Camera* getCamera() const { return m_Camera; }
-		inline void setShader(Shader* shader) { m_Shader = shader; }
+		inline void setShader(Shader* shader) { m_Shader = shader; m_Shader->enable();}
 		inline Shader* getShader() const { return m_Shader; }
 	
 	protected:

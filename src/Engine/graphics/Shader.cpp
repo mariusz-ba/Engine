@@ -106,10 +106,10 @@ namespace engine { namespace graphics {
 	GLuint Shader::getUniformLocation(const GLchar* name)
 	{
 		if (m_UniformLocations.count(name))
-			return m_UniformLocations.at(name);
+			return m_UniformLocations[name];
 
 		m_UniformLocations[name] = glGetUniformLocation(m_Program, name);
-		return m_UniformLocations.at(name);
+		return m_UniformLocations[name];
 	}
 
 } }

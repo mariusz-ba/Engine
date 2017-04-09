@@ -22,7 +22,6 @@ namespace engine {
 
 	protected:
 		Window m_Window;
-		
 	};
 
 }

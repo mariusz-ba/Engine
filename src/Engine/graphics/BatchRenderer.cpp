@@ -68,6 +68,7 @@ namespace engine { namespace graphics {
 
 	BatchRenderer::~BatchRenderer()
 	{
+		m_Shader->disable();
 	}
 
 	void BatchRenderer::push(const glm::mat4& matrix)
@@ -182,8 +183,6 @@ namespace engine { namespace graphics {
 
 	void BatchRenderer::flush()
 	{
-		//m_Shader->enable();
-
 		for (int i = 0; i < m_TextureSlots.size(); ++i)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
@@ -198,8 +197,6 @@ namespace engine { namespace graphics {
 		m_IndexBuffer->unbind();
 		glBindVertexArray(0);
 		m_RenderableCount = 0;
-	
-		//m_Shader->disable();
 	}
 
 } }

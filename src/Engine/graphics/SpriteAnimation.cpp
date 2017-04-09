@@ -13,7 +13,6 @@ namespace engine { namespace graphics {
 
 	}
 
-	// TODO: ...
 	SpriteAnimation::SpriteAnimation(const std::string& name, const std::initializer_list<int>& frames)
 	{
 		if (frames.size() % 4 != 0) return; // Each frame contains 4 elements (x, y, width, height)
